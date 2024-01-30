@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-shark-app-deployment
+  labels:
+     deployment: shark	
+spec:
+  selector:
+      matchLabels:
+        app: nodejs-shark-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nodejs-shark-app
+    spec:
+      containers:
+        - name: nodejs-shark-app
+          image: 432030471883.dkr.ecr.us-east-1.amazonaws.com/sharky
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
